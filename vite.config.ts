@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
+import autoprefixer from 'autoprefixer'
 import postCssPxToRem from 'postcss-pxtorem'
 import { resolve } from 'path'
 
@@ -23,7 +24,7 @@ export default defineConfig({
     // vite 中已集成了 postcss
     // https://vitejs.cn/config/#css-postcss
     postcss: {
-      plugins: [require('autoprefixer')({
+      plugins: [autoprefixer({
         overrideBrowserslist: [
           'Android 4.1',
           'iOS 7.1',
@@ -50,5 +51,8 @@ export default defineConfig({
           exclude: /node_modules/i,
       })],
     },
+  },
+  server: {
+    port: 9999
   }
 })
