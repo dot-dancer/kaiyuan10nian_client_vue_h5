@@ -1,0 +1,16 @@
+$g-space: 15px;
+$g-tbar-cnt-space: 10px; // 面板顶部工具条与内容区域之间垂直间距
+$g-max-content-width: 750PX; // 页面内容区域最大宽度
+$g-content-min-height: calc(100vh - 50px); // 全局带taskbar面板内容区域最小高度
+
+@mixin shadow{
+    box-shadow: 0px 0px 10px rgba(100, 100,100, .1);
+}
+
+@mixin hover-border{
+    border: 2px solid transparent;
+
+    &:hover{
+        border: 2px solid var(--deep-bg);
+    }
+}
