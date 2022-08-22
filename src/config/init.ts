@@ -1,3 +1,4 @@
+import { App } from 'vue'
 import app from './app'
 import Tools from '@/utils/Tools'
 import { initLoginUserInfo } from '@/controller/AppCtl'
@@ -46,4 +47,15 @@ export const initApp = async () => {
         const iEntryFile = iAllEntry[path]
         iEntryFile && iEntryFile.entryInit && await iEntryFile.entryInit()
     }
+}
+
+// =============================================================================
+// = 注册全局组件
+export const initGlobalComponents = (uiApp: App<Element>) => {
+    const iAllGlobalComponents: GlobalType.IRecord = import.meta.glob('@/components/*/src/*.vue', {eager: true})
+    Object.keys(iAllGlobalComponents).map((path: string) => {
+        const paths = path.split('/')
+        const stCmpName = paths[paths.length - 3]
+        uiApp.component(stCmpName, iAllGlobalComponents[path].default)
+    })
 }
