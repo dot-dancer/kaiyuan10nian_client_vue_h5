@@ -1,0 +1,19 @@
+[data-theme="blue"]{
+    /*https://ant-design.gitee.io/docs/spec/colors-cn上通过#3c62cd作为标准生成的颜色*/
+    /*由浅入深*/
+    --theme-color-1: #f0f6ff;
+    --theme-color-2: #edf4ff;
+    --theme-color-3: #bbcff2;
+    --theme-color-4: #8caae6;
+    --theme-color-5: #6285d9;
+    --theme-color-6: #3c62cd; // 设计稿上定义的最深颜色
+    --theme-color-7: #2845a6;
+    --theme-color-8: #182d80;
+    --theme-color-9: #0c1959;
+    --theme-color-10: #070d33;
+
+    --primary-size: 22px;
+    --primary-color: var(--color-white-1);
+    --primary-bg: #F00;
+    --van-button-primary-background-color: #F00;
+}

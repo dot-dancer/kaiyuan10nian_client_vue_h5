@@ -1,6 +1,7 @@
 import { LOGIN_TOKEN } from '@/utils/Constants'
 import mdlUserApi, { IUser } from '@/api/UserApi'
 import { mergeLpk, changeLocale } from '@/config/lpk'
+import { changeTheme } from '@/config/theme'
 
 let iLoginUser: IUser = {} as IUser // 缓存登录者个人信息
 
@@ -17,4 +18,5 @@ export default {
     },
     changeLocale,
     mergeLpk,
+    changeTheme,
 }
