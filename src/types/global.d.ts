@@ -1,5 +1,5 @@
 import { IApp } from '@/config/app'
-import { IFnLpk } from './config/lpk'
+import { IFnLpk } from '@/config/lpk'
 import { ITools } from '@/utils/Tools'
 
 declare global{

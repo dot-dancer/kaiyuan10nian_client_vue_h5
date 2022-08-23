@@ -1,3 +1,6 @@
+import { Locale } from 'vant'
+import enUS from 'vant/es/locale/lang/en-US'
+
 import { get, isArray } from 'lodash'
 import { LOCALE_OPTIONS } from '@/utils/Constants'
 
@@ -7,6 +10,17 @@ const tblLpk: Record<string, string | string[]> = {} // 缓存语言包内容索
 //! 初始系统语言环境
 export const initLpk = () => {
     mergeLpk(import.meta.glob('@/locales/*', {eager: true}))
+    initThirdUILpk()
+}
+
+//! 初始化第三方UI库的语言包
+const initThirdUILpk = () => {
+    const tblThirdLpk: GlobalType.IRecord = {
+        'en-US': enUS,
+    }
+
+    const stLocale = getLocale()
+    tblThirdLpk[stLocale] && (Locale.use(stLocale, tblThirdLpk[stLocale]))
 }
 
 //! 获取本地语言环境

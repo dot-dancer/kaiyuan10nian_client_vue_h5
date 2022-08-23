@@ -1,13 +1,30 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
+// 在组件中动态引入vue相关API
+import autoImport from 'unplugin-auto-import/vite'
+
 import autoprefixer from 'autoprefixer'
 import postCssPxToRem from 'postcss-pxtorem'
 import { resolve } from 'path'
 
+// Vant按需加载
+import Components from 'unplugin-vue-components/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    autoImport({
+      imports: ['vue'],
+      dts: 'src/types/auto-import-vue.d.ts',
+    }),
+    Components({
+      dts: 'src/types/auto-import-components.d.ts',
+      resolvers: [VantResolver()],
+    }),
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
