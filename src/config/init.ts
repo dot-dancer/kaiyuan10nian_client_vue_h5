@@ -3,6 +3,7 @@ import app from './app'
 import Tools from '@/utils/Tools'
 import { initLoginUserInfo } from '@/controller/AppCtl'
 import { lpk, initLpk } from './lpk'
+import { initTheme } from './theme'
 
 // =============================================================================
 // = 绑定全局变量
@@ -35,11 +36,8 @@ export const initApp = async () => {
     await initLoginUserInfo()
 
     // -------------------------------------------------------------------------
-    // - 主题定制
-    // - 1.针对不同主题去书写不现的样式文件, 在系统初始化时, 根据当前使用的主题, 
-    //     到Server端去加载对应的样式文件来使用
-    // - 2.通过SCSS变量与SCSS里面的函数和mixin来实现主题的定制
-    // - 3.通过CSS变量来实现主题的定制
+    // - 设置系统主题样式
+    initTheme()
 
     // -------------------------------------------------------------------------
     // - 加载基础平台的语言包 

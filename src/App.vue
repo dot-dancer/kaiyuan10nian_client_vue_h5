@@ -27,9 +27,15 @@
     width: 30%;
     padding: 30px 0;
     text-align: center;
+    font-size: var(--primary-size);
+    color: var(--primary-color);
+    background-color: var(--primary-bg);
+
+    /*
     @include fontSize('big-size');
     @include bg('menu-bg');
     @include color('menu-text-color');
+    */
   }
 }
 </style>

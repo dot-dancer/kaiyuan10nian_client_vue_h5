@@ -2,6 +2,10 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { initApp, initGlobalComponents } from '@/config/init'
 
+import './assets/styles/base-theme.scss'
+import './assets/styles/blue-theme.scss'
+import './assets/styles/black-theme.scss'
+
 import 'normalize.css/normalize.css'
 import './assets/fonts/iconfont.css'
 import './assets/styles/global.scss'
