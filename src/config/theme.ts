@@ -1,5 +1,5 @@
 import { get } from 'lodash'
-import { THEME_OPTIONS } from '@/utils/Constants';
+import { THEME_OPTIONS } from '@/utils/Constants'
 
 // =============================================================================
 // = 系统主题的定义
@@ -40,11 +40,11 @@ export const getTheme = () => {
 
     const iLoginUser = app.getAppCtl().getLoginUser()
 
-    // 优先从登录者的自定义信息中获取
+    // 1.优先从登录者的自定义信息中获取
     stCurUseTheme = get(iLoginUser, 'cust.theme')
-    // 其次从本地存储中获取
+    // 2.其次从本地存储中获取
     stCurUseTheme = stCurUseTheme || Tools.LocalStorage.getItem(stThemeStorageName)    
-    // 最终使用默认主题
+    // 3.最终使用默认主题
     stCurUseTheme = stCurUseTheme || stDefaultTheme
 
     return stCurUseTheme
