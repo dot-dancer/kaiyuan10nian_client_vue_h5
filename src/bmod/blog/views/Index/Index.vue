@@ -2,7 +2,7 @@
 /*! @file
 ********************************************************************************
 <PRE>
-文件实现功能   : 首页组件
+文件实现功能   : 当前模块对应的主页
 作者           : dotdancer
 版本           : 1.0
 --------------------------------------------------------------------------------
@@ -10,10 +10,10 @@
 --------------------------------------------------------------------------------
 修改记录 :
 日  期       版本    修改人     修改内容
-2022/08/10   1.0     dotdancer  创建
+2022/08/26   1.0     dotdancer  创建
 </PRE>
 *******************************************************************************/
-// defineOptions({name: 'Index'})
+// defineOptions({name: ''})
 
 //==============================================================================
 //== 类型定义
@@ -28,30 +28,9 @@
 </script>
 
 <template>
-    <div class="index-w">
-        <div class="title">Index.vue</div>
-        <router-view/>
-
-        <ul class="g-flex-rsbc">
-            <li>
-                <router-link :to="{name: 'home'}">{{ lpk('page.index.Title') }}</router-link>
-            </li>
-            <!-- <li>
-                <router-link :to="{name: 'blogIndex'}">{{ lpk('Blog') }}</router-link>
-            </li> -->
-            <li>
-                <router-link :to="{name: 'my'}">{{ lpk('page.my.Title') }}</router-link>
-            </li>
-        </ul>
-    </div>
+    <div class="blog-index">Blog Index</div>
 </template>
 
 <style lang="scss" scoped>
-.index-w{
-    background: #FF0;
 
-    .title{
-        margin: 30px;
-    }
-}
 </style>

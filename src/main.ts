@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { initApp, initGlobalComponents } from '@/config/init'
+import { initRouter } from './router'
 
 import './assets/styles/base-theme.scss'
 import './assets/styles/blue-theme.scss'
@@ -37,5 +38,9 @@ import './assets/styles/global.scss'
 
     // =========================================================================
     // = 初始化状态管理与路由, 并渲染根组件
-    uiApp.mount('#app')
+    // = 1.初始化基础模块的路由配置
+    // = 2.初始化各业务模块的路由配置
+    // = 3.对路由守卫进行处理
+    // = 4.keep-alive的使用
+    uiApp.use(initRouter()).mount('#app')
 })()

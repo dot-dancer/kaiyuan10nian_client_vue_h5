@@ -1,3 +1,4 @@
 export default {
-    "Index" : "Home"
+    "page.index.Title": "Index",
+    "page.my.Title": "My",
 }
