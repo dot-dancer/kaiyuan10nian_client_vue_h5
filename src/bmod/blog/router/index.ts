@@ -22,14 +22,14 @@ export const initRoutes = () => {
     // -------------------------------------------------------------------------
     // - 定义当前模块对应的路由信息
     const giRoutes: RouteRecordRaw[] = [{
-        name: `${syscfg.module}Index`,
+        name: `blogIndex`,
         path: stPath,
         meta: {
             title: lpk('Blog'),
             requireAuth: false,
             belongToRouterViewKey: ROUTER_VIEW_KEY.Index,
         },
-        component: () => import('../views/Index/Index.vue'),
+        component: () => import('../views/Index/BlogIndex.vue'),
     }, {
         name: 'articleDetail',
         path: `${stPath}/article/detail/:id`,

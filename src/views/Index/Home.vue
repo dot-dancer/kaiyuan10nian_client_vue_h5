@@ -28,7 +28,12 @@
 </script>
 
 <template>
-    <div class="home">Home</div>
+    <div class="home">
+        Home
+        <div>
+            <input/>
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
