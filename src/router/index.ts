@@ -14,7 +14,7 @@
 *******************************************************************************/
 import { get } from 'lodash'
 import { createRouter, createWebHistory, Router, RouteRecordRaw } from 'vue-router'
-import { ROUTER_VIEW_KEY } from '@/utils/Constants'
+import { ROUTER_VIEW_KEY, LOGIN_PATH } from '@/utils/Constants'
 import Index from '@/views/Index/Index.vue'
 
 type RouteRecordRawExt = RouteRecordRaw & {children?: RouteRecordRawExt[]}
@@ -47,11 +47,12 @@ export const initRouter: () => Router = () => {
                     component: () => import('@/views/My/My.vue'),
                     meta: {
                         title: lpk('page.my.Title'),
+                        keepAlive: false,
                     }
                 }
             ]
         },
-        {path: '/login', name: 'login', component: () => import('@/views/Login/Login.vue'), meta: {title: lpk('page.login.Title'), requireAuth: false}},
+        {path: LOGIN_PATH, name: 'login', component: () => import('@/views/Login/Login.vue'), meta: {title: lpk('page.login.Title'), requireAuth: false}},
         {path: '/regist', name: 'regist', component: () => import('@/views/Login/Regist.vue'), meta: {title: lpk('page.regist.Title'), requireAuth: false}},
     ]
 
@@ -68,6 +69,26 @@ export const initRouter: () => Router = () => {
     const iRouter = createRouter({
         history: createWebHistory(),
         routes
+    })
+
+    iRouter.beforeEach((to, from, next) => {
+        const stLoginUserId = get(app.getAppCtl().getLoginUser(), 'id', '')
+        if (!stLoginUserId && to.matched.some(record => false !== get(record, 'meta.requireAuth', true))){
+            next({
+                path: LOGIN_PATH,
+                query: {redirect: to.fullPath}
+            })
+
+            return
+        }
+
+        // 已登录, 进入登录界面时, 直接返回到主页
+        if (stLoginUserId && to.path == LOGIN_PATH){
+            next('/')
+            return
+        }
+
+        next()
     })
 
     iRouter.afterEach((to, from) => {

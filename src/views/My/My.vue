@@ -28,7 +28,12 @@
 </script>
 
 <template>
-    <div class="my">My</div>
+    <div class="my">
+        My
+        <div>
+            <input/>
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
