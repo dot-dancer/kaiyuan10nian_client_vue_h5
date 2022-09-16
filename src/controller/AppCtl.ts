@@ -1,4 +1,4 @@
-import { LOGIN_TOKEN } from '@/utils/Constants'
+import { LOGIN_PATH, LOGIN_TOKEN } from '@/utils/Constants'
 import mdlUserApi, { IUser } from '@/api/UserApi'
 import { mergeLpk, changeLocale } from '@/config/lpk'
 import { changeTheme } from '@/config/theme'
@@ -15,6 +15,9 @@ export const initLoginUserInfo = async () => {
 export default {
     getLoginUser(): IUser{
         return iLoginUser
+    },
+    redirectToLogin(){
+        document.location.href = LOGIN_PATH
     },
     changeLocale,
     mergeLpk,

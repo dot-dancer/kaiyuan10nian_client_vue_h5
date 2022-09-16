@@ -1,6 +1,8 @@
 import { IApp } from '@/config/app'
 import { IFnLpk } from '@/config/lpk'
 import { ITools } from '@/utils/Tools'
+import Icon from '@/components/Icon'
+import type { IAjax } from '@/utils/Request'
 
 declare global{
     declare namespace GlobalType{
@@ -11,11 +13,15 @@ declare global{
     const app: IApp
     const Tools: ITools
     const lpk: IFnLpk
+    const Ajax: IAjax 
+
+    type ITimeout = ReturnType<typeof setTimeout>
 
     interface Window{
-        app: IApp; // 全局app对象, 挂载一些全局数据与操作方法
-        Tools: ITools; // 全局工具库对象, 其中包含一些公用方法
-        lpk: IFnLpk; // 全局语言包支持函数
+        app: IApp;      // 全局app对象, 挂载一些全局数据与操作方法
+        Tools: ITools;  // 全局工具库对象, 其中包含一些公用方法
+        lpk: IFnLpk;    // 全局语言包支持函数
+        Ajax: IAjax;    // 全局Ajax请求库
     }
 }
 
@@ -23,6 +29,10 @@ declare global{
 // 为了让<template>中的lpk在typescript环境不会报错, 还需要增加下面声明
 // 注意: 该声明必须放置到module中, 否则就会覆盖全局类型, 而不是增强全局类型
 declare module 'vue' {
+    interface GlobalComponents{
+        Icon: typeof Icon
+    }
+
     interface ComponentCustomProperties {
       app: IApp;
       Tools: ITools;

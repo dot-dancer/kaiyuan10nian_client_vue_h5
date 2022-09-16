@@ -4,6 +4,7 @@ import Tools from '@/utils/Tools'
 import { initLoginUserInfo } from '@/controller/AppCtl'
 import { lpk, initLpk } from './lpk'
 import { initTheme } from './theme'
+import Ajax from '@/utils/Request'
 
 // =============================================================================
 // = 绑定全局变量
@@ -22,6 +23,7 @@ const iGlobalVars: IGlobalVars = {
     app,   // 全局应用对象, 挂载一些全局数据与操作方法
     lpk,   // 全局获取语言包内容方法
     Tools, // 全局自定义工具库
+    Ajax,  // 全局Ajax请求库
 }
 
 Object.keys(iGlobalVars).forEach(stKey => {

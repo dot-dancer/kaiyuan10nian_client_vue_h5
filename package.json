@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "nanoid": "^4.0.0",
