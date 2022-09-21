@@ -13,7 +13,7 @@
 2022/08/10   1.0     dotdancer  创建
 </PRE>
 *******************************************************************************/
-// defineOptions({name: 'Index'})
+import mdlUserApi from '@/api/UserApi'
 
 //==============================================================================
 //== 类型定义
@@ -25,6 +25,13 @@
 
 //==============================================================================
 //== 事件处理
+onMounted(async () => {
+    const iUser = await mdlUserApi.get({id: 2})
+    console.log('获取到的用户详情: ', iUser)
+
+    const iUserList = await mdlUserApi.list({nPageSize: 2})
+    console.log('获取到的用户列表: ', iUserList)
+})
 </script>
 
 <template>

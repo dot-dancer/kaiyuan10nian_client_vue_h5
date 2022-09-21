@@ -66,6 +66,21 @@ export const initRouter: () => Router = () => {
     // = 收集所有"宿主RouterView"对应的各业务模块注册的"属于子路由"
     gatherBelongToRoute()
 
+    /*
+        为了url的美观, 同时为了避免在微信等一些场景分享页面时, hash链接丢失
+        参数等问题, 所以项目中会坚持使用history模式
+
+        采用history模式, 在 build 后访问子路径刷新页面时, 会遇到404问题
+        解决方法, 调整nginx配置:
+        location / {
+            try_files $uri $uri/ @router;
+            index  index.html index.htm;
+        }
+
+        location @router {
+            rewrite ^.*$ /index.html last;
+        }
+    */
     const iRouter = createRouter({
         history: createWebHistory(),
         routes
