@@ -2,12 +2,41 @@ import { IApp } from '@/config/app'
 import { IFnLpk } from '@/config/lpk'
 import { ITools } from '@/utils/Tools'
 import Icon from '@/components/Icon'
-import type { IAjax } from '@/utils/Request'
+import type { IAjax, IResponse } from '@/utils/Request'
 
 declare global{
     declare namespace GlobalType{
         type IKey = string | number;
         type IRecord = Record<IKey, any>;
+    }
+
+    declare namespace BaseAPIType{
+        interface IMethods<T>{
+            get(params: GlobalType.IRecord): Promise<T>;
+            list(params: GlobalType.IRecord): Promise<IListResult<T>>;
+            post(params: GlobalType.IRecord): Promise<IResponse>;
+            put(params: GlobalType.IRecord): Promise<IResponse>;
+            delete(params: GlobalType.IRecord): Promise<IResponse>;
+        }
+
+        interface IListResult<T = any>{
+            total: number;
+            items: T[];
+        }
+
+        interface IURIItem{
+            path: string;
+            errMsg: string;
+        }
+
+        interface IURI{
+            [key: string]: IURIItem
+        }
+
+        interface IInitParams<T = IRecord>{
+            mapper?: (item: IRecord) => T;
+            uri: IURI
+        }
     }
 
     const app: IApp

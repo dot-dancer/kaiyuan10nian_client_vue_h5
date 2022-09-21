@@ -18,6 +18,29 @@ const iTools = {
 
         return url
     },
+    //! 显示错误提示
+    showError(title: string = '', msg: string = ''){
+        alert(`${title}: ${msg}`)
+    },
+    //! 处理API调用错误
+    processApiError(title: string,
+                    res: (string | {msg: string}) = {msg: ''},
+                    options: {bIsShowInfo: boolean} = {bIsShowInfo: true}
+    ){
+        if ('string' == typeof res){
+            res = {msg: res}
+        }
+
+        title = lpk(title)
+        const stContent = lpk(res.msg) || ''
+        const stMsg = `${title}: ${stContent}`
+        if (false !== options.bIsShowInfo){
+            Tools.showError(title, stContent)
+        }
+        
+        window.console && window.console.log && window.console.log(res)
+        throw stMsg
+    },
     Router: { // 路由操作命名空间
 
     }, 
