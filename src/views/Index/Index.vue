@@ -26,11 +26,13 @@ import mdlUserApi from '@/api/UserApi'
 //==============================================================================
 //== 事件处理
 onMounted(async () => {
-    const iUser = await mdlUserApi.get({id: 2})
+    const iUser = await mdlUserApi.get({id: 2, name: 'zs'})
     console.log('获取到的用户详情: ', iUser)
 
     const iUserList = await mdlUserApi.list({nPageSize: 2})
     console.log('获取到的用户列表: ', iUserList)
+
+    mdlUserApi.post({name: 'ls', age: 22, sex: 2})
 })
 </script>
 
