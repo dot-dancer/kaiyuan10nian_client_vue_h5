@@ -16,6 +16,7 @@ declare global{
             list(params: GlobalType.IRecord): Promise<IListResult<T>>;
             post(params: GlobalType.IRecord): Promise<IResponse>;
             put(params: GlobalType.IRecord): Promise<IResponse>;
+            patch(params: GlobalType.IRecord): Promise<IResponse>;
             delete(params: GlobalType.IRecord): Promise<IResponse>;
         }
 
@@ -27,6 +28,8 @@ declare global{
         interface IURIItem{
             path: string;
             errMsg: string;
+            fnUrlTransfer?: (url: string, params: IRecord) => string;
+            fnParamsTransfer?: (url: string, params: IRecord) => IRecord;
         }
 
         interface IURI{

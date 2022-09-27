@@ -13,10 +13,15 @@ export const initLoginUserInfo = async () => {
 }
 
 export default {
-    getLoginUser(): IUser{
+    getLoginUser(){
         return iLoginUser
     },
+    clearLoginInfo(){
+        iLoginUser = {} as IUser
+        Tools.Cookie.removeItem(LOGIN_TOKEN)
+    },
     redirectToLogin(){
+        this.clearLoginInfo()
         document.location.href = LOGIN_PATH
     },
     changeLocale,

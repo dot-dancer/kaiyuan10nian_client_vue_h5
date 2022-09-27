@@ -17,7 +17,7 @@ import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import qs from 'qs'
 import { get } from 'lodash'
 import app from '@/config/app'
-import { LOGIN_TOKEN } from './Constants';
+import { LOGIN_TOKEN, APIMethods } from './Constants';
 
 // =============================================================================
 // = 定义 或 扩展axios的类型
@@ -38,7 +38,7 @@ export interface IResponse<T = any>{
 
 // =============================================================================
 // = 设置axios默认配置选项
-axios.defaults.headers.head['Content-Type'] = 'application/json;chartset=utf-8'
+axios.defaults.headers.head['Content-Type'] = 'application/json;charset=utf-8'
 
 // =============================================================================
 // = 定义该模板内全局变量
@@ -99,16 +99,16 @@ axiosInstance.interceptors.response.use((res: AxiosResponse<IResponse>) => {
 
 // =============================================================================
 // = 定义常用请求方法
-type IAjaxMethod = 'get' | 'post' | 'put' | 'patch' | 'delete'
+type IAjaxMethod = APIMethods.GET | APIMethods.POST | APIMethods.PUT | APIMethods.PATCH | APIMethods.DELETE
 type IFnAjaxMethodHandler = <T = any>(reqParams: AxiosRequestConfigExt) => Promise<IResponse<T>>
 
 // =============================================================================
 // = 绑定多种请求类型的方法
 const iAllMethods: {[key in IAjaxMethod]: IFnAjaxMethodHandler} = {} as any
-const gstMethods: string[] = ['GET', 'POST', 'PATCH', 'PUT', 'DELETE']
+const gstMethods: string[] = [APIMethods.GET,  APIMethods.POST,  APIMethods.PUT,  APIMethods.PATCH,  APIMethods.DELETE].map(method => method.toUpperCase())
 gstMethods.map(method => {
     const fnHandler: IFnAjaxMethodHandler = <T = any>(reqParams: AxiosRequestConfigExt | string): Promise<IResponse<T>> => {
-        if ('GET' == method){
+        if (APIMethods.GET == method){
             if ('string' === typeof reqParams){
                 reqParams = {
                     url: reqParams,
@@ -172,7 +172,7 @@ const Ajax = {
             reqParams: reqParams,
             url,
             method: (gstMethods.indexOf(method) > -1 ? method : 'GET'),
-            [method === 'GET' ? 'params' : 'data']: params,
+            [method === APIMethods.GET ? 'params' : 'data']: params,
             headers: Object.assign({}, headers),
         }
         timeout && (iSendReqParams.timeout = timeout)
